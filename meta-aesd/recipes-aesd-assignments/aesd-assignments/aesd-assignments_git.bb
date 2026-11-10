@@ -15,7 +15,7 @@ SRC_URI = "git://github.com/curtnichols/aeld-assignment-3-and-later.git;protocol
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "42e7bc4260d2cea03d42a3a290a756e938d9f3d0"
+SRCREV = "ea0b674b21916e741fc053c024449093d2c6e7ca"
 
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
