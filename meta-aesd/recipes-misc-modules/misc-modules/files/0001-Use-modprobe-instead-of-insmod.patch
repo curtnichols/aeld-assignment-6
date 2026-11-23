@@ -1,0 +1,25 @@
+From 2e67e2b30592e54daedbd8726385fcbe91b7cd90 Mon Sep 17 00:00:00 2001
+From: Curt Nichols <curt.nichols@live.com>
+Date: Mon, 23 Nov 2026 17:04:55 -0600
+Subject: [PATCH] Use modprobe instead of insmod
+
+Upstream-Status: Inappropriate [CUB AELD 5306 course]
+---
+ misc-modules/module_load | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/misc-modules/module_load b/misc-modules/module_load
+index c9fb9e2..515230a 100755
+--- a/misc-modules/module_load
++++ b/misc-modules/module_load
+@@ -25,7 +25,9 @@ fi
+ shift
+ 
+ echo "Load our module, exit on failure"
+-insmod ./$module.ko $* || exit 1
++#insmod ./$module.ko $* || exit 1
++modprobe $module $* || exit 1
++
+ echo "Get the major number (allocated with allocate_chrdev_region) from /proc/devices"
+ major=$(awk "\$2==\"$module\" {print \$1}" /proc/devices)
+ if [ ! -z ${major} ]; then

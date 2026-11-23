@@ -1,0 +1,26 @@
+From 54ec51b9e97efd3da5023ac8da0c7c9bd771eb98 Mon Sep 17 00:00:00 2001
+From: Curt Nichols <curt.nichols@live.com>
+Date: Mon, 23 Nov 2026 14:43:11 -0600
+Subject: [PATCH] Use modprobe instead of insmod
+
+Upstream-Status: Inappropriate [CUB AELD 5306 course]
+---
+ scull/scull_load | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/scull/scull_load b/scull/scull_load
+index 2ef6a54..edfbe94 100755
+--- a/scull/scull_load
++++ b/scull/scull_load
+@@ -11,9 +11,9 @@ else
+     group="wheel"
+ fi
+ 
+-# invoke insmod with all arguments we got
++# invoke insmod/modprobe with all arguments we got
+ # and use a pathname, as insmod doesn't look in . by default
+-insmod ./$module.ko $* || exit 1
++modprobe $module $* || exit 1
+ 
+ # retrieve major number
+ major=$(awk "\$2==\"$module\" {print \$1}" /proc/devices)
